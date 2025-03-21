@@ -6,6 +6,7 @@ scipy==1.11.4
 numpy==1.26.2
 matplotlib
 pandas
+jupyter
 anthropic
 google-generativeai
 openai>=1.2
