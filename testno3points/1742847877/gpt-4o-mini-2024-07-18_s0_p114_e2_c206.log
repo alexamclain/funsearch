@@ -1,0 +1,51 @@
+=== PROMPT ===
+"""Finds subsets of an nxn grid that contains 3 points in a line
+
+On every iteration, improve priority_v1 over the priority_vX methods from previous iterations.
+Make only small changes.
+Try to make the code short.
+"""
+import itertools
+import numpy as np
+import funsearch
+import itertools
+
+
+def priority_v0(el: tuple[int, int], n: int) -> float:
+    """Returns the priority with which we want to add `element` to the cap set.
+    """
+    return 1.0 if (el[0] + el[1]) % 2 == 0 else 0.4
+
+
+def priority_v1(el: tuple[int, int], n: int) -> float:
+    """Improved version of `priority_v0`.
+    """
+    """Improved version of `priority_v1` with additional center proximity check."""
+    center_distance = abs(el[0] - (n - 1) / 2) + abs(el[1] - (n - 1) / 2)
+    return 1.0 if center_distance < 1 else 0.5 if (el[0] + el[1]) % 2 == 1 else 0.3
+
+
+def priority_v2(el: tuple[int, int], n: int) -> float:
+  """Improved version of `priority_v1`.
+  """
+
+
+=== RESPONSE ===
+```python
+def priority_v3(el: tuple[int, int], n: int) -> float:
+    """Enhanced version of `priority_v2` with added edge proximity check."""
+    center_distance = abs(el[0] - (n - 1) / 2) + abs(el[1] - (n - 1) / 2)
+    edge_distance = min(el[0], el[1], n - 1 - el[0], n - 1 - el[1])
+    return 1.0 if center_distance < 1 and edge_distance < 1 else 0.4 if (el[0] + el[1]) % 2 == 1 else 0.2
+```
+================
+eval_state: success
+Model: gpt-4o-mini-2024-07-18
+Total tokens: 582
+Prompt tokens: 429
+Completion tokens: 153
+generation_time: None
+scores_per_test: {8: 15}
+parent_signatures: [(15,), (13,)]
+Recieved response: 20:28:10 after 3.911 seconds
+time_of_eval: 20:28:16, 6.277 seconds after time_of_response

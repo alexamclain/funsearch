@@ -295,6 +295,7 @@ async def run_agents(config: config_lib.Config, database: AsyncProgramsDatabase,
         tags=tags,
         config={
             "model_names": [lm.model.model for lm in portable_config.lm],
+            "grid_size": portable_config.inputs,
             "num_cores": num_cores,
             "num_samplers": config.num_samplers,
             "run_duration": config.run_duration,

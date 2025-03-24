@@ -1,0 +1,51 @@
+=== PROMPT ===
+"""Finds subsets of an nxn grid that contains 3 points in a line
+
+On every iteration, improve priority_v1 over the priority_vX methods from previous iterations.
+Make only small changes.
+Try to make the code short.
+"""
+import itertools
+import numpy as np
+import funsearch
+import itertools
+
+
+def priority_v0(el: tuple[int, int], n: int) -> float:
+    """Returns the priority with which we want to add `element` to the cap set.
+    """
+    x, y = el
+    return float(((x + y) % n) + 0.5 * (x * y % n))  # Added a small enhancement based on product
+
+
+def priority_v1(el: tuple[int, int], n: int) -> float:
+    """Improved version of `priority_v0`.
+    """
+    x, y = el
+    return float((x * y + x + y) % n)  # New formula for diversity
+
+
+def priority_v2(el: tuple[int, int], n: int) -> float:
+  """Improved version of `priority_v1`.
+  """
+
+
+=== RESPONSE ===
+```python
+def priority_v2(el: tuple[int, int], n: int) -> float:
+    """Improved version of `priority_v1`.
+    """
+    x, y = el
+    return float((x * y + x + y + 1) % n)  # Added a constant to enhance variability
+```
+================
+eval_state: success
+Model: gpt-4o-mini-2024-07-18
+Total tokens: 446
+Prompt tokens: 376
+Completion tokens: 70
+generation_time: None
+scores_per_test: {8: 11}
+parent_signatures: [(13,), (12,)]
+Recieved response: 20:25:46 after 1.174 seconds
+time_of_eval: 20:25:50, 4.167 seconds after time_of_response

@@ -1,0 +1,51 @@
+=== PROMPT ===
+"""Finds subsets of an nxn grid that contains 3 points in a line
+
+On every iteration, improve priority_v1 over the priority_vX methods from previous iterations.
+Make only small changes.
+Try to make the code short.
+"""
+import itertools
+import numpy as np
+import funsearch
+import itertools
+
+
+def priority_v0(el: tuple[int, int], n: int) -> float:
+    """Returns the priority with which we want to add `element` to the cap set.
+    """
+    x, y = el
+    return float(((x + y) * (x - y) + x * y) % n)  # Slight adjustment for variation
+
+
+def priority_v1(el: tuple[int, int], n: int) -> float:
+    """Improved version of `priority_v0`.
+    """
+    x, y = el
+    return float((x * y + (x + y) ** 2 + (x - y) % n) % n)  # Introduced square of the sum for added diversity
+
+
+def priority_v2(el: tuple[int, int], n: int) -> float:
+  """Improved version of `priority_v1`.
+  """
+
+
+=== RESPONSE ===
+```python
+def priority_v2(el: tuple[int, int], n: int) -> float:
+    """Improved version of `priority_v1`.
+    """
+    x, y = el
+    return float(((x * y) ** 2 + (x + y) * (x - y) + (x + y) % n) % n)  # Added square of x*y for more variation
+```
+================
+eval_state: success
+Model: gpt-4o-mini-2024-07-18
+Total tokens: 478
+Prompt tokens: 389
+Completion tokens: 89
+generation_time: None
+scores_per_test: {8: 12}
+parent_signatures: [(14,), (13,)]
+Recieved response: 20:29:36 after 1.563 seconds
+time_of_eval: 20:29:42, 6.489 seconds after time_of_response

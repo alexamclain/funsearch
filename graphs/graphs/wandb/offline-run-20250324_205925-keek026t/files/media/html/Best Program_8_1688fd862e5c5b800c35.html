@@ -1,0 +1,10 @@
+<base target="_blank"><link rel="stylesheet" type="text/css" href="https://app.wandb.ai/normalize.css" /><pre>Score: 6
+
+def priority(el: tuple[int, int], n: int) -> float:
+    """Returns the priority with which we want to add `element` to the cap set.
+    """
+    """Improved version of `priority_v1`."""
+    x, y = el
+    return 1.0 if (x + y) % 3 == 0 else 0.0
+
+</pre>

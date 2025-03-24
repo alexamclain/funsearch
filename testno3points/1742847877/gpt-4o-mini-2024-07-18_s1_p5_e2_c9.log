@@ -1,0 +1,41 @@
+=== PROMPT ===
+"""Finds subsets of an nxn grid that contains 3 points in a line
+
+On every iteration, improve priority_v1 over the priority_vX methods from previous iterations.
+Make only small changes.
+Try to make the code short.
+"""
+import itertools
+import numpy as np
+import funsearch
+import itertools
+
+
+def priority_v0(el: tuple[int, int], n: int) -> float:
+    """Returns the priority with which we want to add `element` to the cap set.
+    """
+    return (el[0] + el[1]) / (2 * n)  # Normalize by grid size
+
+
+def priority_v1(el: tuple[int, int], n: int) -> float:
+  """Improved version of `priority_v0`.
+  """
+
+
+=== RESPONSE ===
+```python
+def priority_v1(el: tuple[int, int], n: int) -> float:
+    """Improved version of `priority_v0`."""
+    return (el[0] + el[1] + 0.5) / (2 * n)  # Added small constant for better scaling
+```
+================
+eval_state: success
+Model: gpt-4o-mini-2024-07-18
+Total tokens: 368
+Prompt tokens: 300
+Completion tokens: 68
+generation_time: None
+scores_per_test: {8: 10}
+parent_signatures: [(10,)]
+Recieved response: 20:24:57 after 1.538 seconds
+time_of_eval: 20:25:00, 3.663 seconds after time_of_response
