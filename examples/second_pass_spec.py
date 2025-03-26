@@ -6,12 +6,15 @@ import itertools
 import numpy as np
 import funsearch
 
-# Load the first-pass solution
+def are_collinear(p1, p2, p3):
+    """Returns True if the three points are collinear."""
+    x1, y1 = p1
+    x2, y2 = p2
+    x3, y3 = p3
+    return (y1 - y2) * (x1 - x3) == (y1 - y3) * (x1 - x2)
+
 def load_first_pass_solution(n):
     """Load the solution from the first pass."""
-    # Implement loading from file or use a hardcoded good solution
-    # For this example, we'll construct the solution based on the pattern
-    # (x * n + y) % 3 == 0
     all_points = np.array(list(itertools.product(np.arange(n), repeat=2)), dtype=np.int32)
     grid_set = np.empty(shape=(0, 2), dtype=np.int32)
     
@@ -32,13 +35,6 @@ def load_first_pass_solution(n):
                 grid_set = np.concatenate([grid_set, point.reshape(1, -1)], axis=0)
     
     return grid_set
-
-def are_collinear(p1, p2, p3):
-    """Returns True if the three points are collinear."""
-    x1, y1 = p1
-    x2, y2 = p2
-    x3, y3 = p3
-    return (y1 - y2) * (x1 - x3) == (y1 - y3) * (x1 - x2)
 
 @funsearch.run
 def evaluate(n: int) -> int:
@@ -79,7 +75,7 @@ def solve_second_pass(n: int, initial_solution) -> np.ndarray:
                     if are_collinear(new_point, grid_set[i], grid_set[j]):
                         is_valid = False
                         break
-                if not valid:
+                if not is_valid:
                     break
             
             if is_valid:
