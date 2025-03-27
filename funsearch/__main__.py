@@ -223,9 +223,12 @@ def runAsync(spec_file, inputs, model, output_path, load_backup, iterations, san
     finally:
         logging.info("Backing up database")
         database.backup()
-        logging.info("Making plots")
-        plotscores(problem_identifier, output_path)
-        
+        #logging.info("Making plots")
+        #plotscores(problem_identifier, output_path)
+        try:
+            plotscores(problem_identifier, output_path)
+        except Exception as e:
+            logging.warning(f"Score plotting failed: {e}")
         # Terminate any multiprocessing children explicitly
         try:
             children = multiprocessing.active_children()
@@ -463,6 +466,7 @@ def plotscores(name, output_path = "./data"):
     # Read the CSV file
     timestamp = str(name)
     csv_filename = os.path.join(output_path, "scores", f"scores_log_{name}.csv")
+    
     df = pd.read_csv(csv_filename)
 
     # Convert Time to seconds (assuming it's already in seconds)
